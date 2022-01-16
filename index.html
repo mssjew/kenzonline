@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kenz Online Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    
+
+
+  </head>
+  <body>
+
+  
+
+    <div id="logo"></div>
+
+   
+      <h1>Kenz Online Position</h1>
+
+      <!-- <h2 class="price">Live Price: $<span id="price"></span></h2> -->
+
+      <h2>Internal: &nbsp; <span id="internal"></span></h2>
+
+      <h2>Net: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="net"></span></h2>
+
+      
+
+      
+      
+    <hr>
+    <p id="key">* = Position Opened Today</p>
+      <!-- SELL DATA -->
+
+      <div class="soldStats">
+        <!-- <h3 id="sellPosCount"></h3> -->
+
+        <h3 id="totalSold"></h3>
+        <h3 >IN <span id="numSoldPos"></span> POSITIONS</h3>
+
+      </div>
+      <p style="color: black;">Avg. Sell Price: &nbsp;<span id="avgSell"></span></p>
+      
+      <ul id="sell"></ul>
+    
+      
+
+      
+      <hr>
+      
+      
+
+      <!-- BUY DATA -->
+      <div class="buyStats">
+
+        <h3 id="totalBought"></h3>
+        <h3 >IN <span id="numBoughtPos"></span> POSITIONS</h3>
+      </div>
+      <p style="color: black;">Avg. Buy Price: &nbsp;<span id="avgBuy"></span></p>
+     
+
+      <ul id="buy"></ul>
+
+      <hr>
+
+      <h1 class="today">Kenz Positions Closed Today</h1>
+      <br>
+
+      <div id="todaySec">
+    
+
+      <!-- <div class="card">
+          <div class="row1">
+            Amount:
+          </div>
+          <div class="row2">
+            Buy Price:
+          </div>
+          <div class="row3">
+            Sell Price:
+          </div>
+          <div class="row3">
+            Total Profit:
+          </div>
+          <div class="row3">
+            Per TT:
+          </div>
+          
+      </div> -->
+
+    </div>
+
+    <br>
+    <br>
+
+    <h2 id="dailyProfit"></h2>
+
+    <br>
+    <br>
+
+
+
+
+     
+
+	<script src="index.js"></script>
+  </body>
+</html>
