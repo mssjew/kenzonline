@@ -332,6 +332,43 @@ h3.numIdx {
   font-weight: 100;
 }
 
+.btnHolder {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 4%;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+button.kenz {
+	margin-top: 2%;
+	margin: 1%;
+	display: flex;
+	font-size: 1.75rem;
+	font-weight: 600;
+	border-radius: 10px;
+	border: 10px solid saddlebrown;
+	background-color: saddlebrown;
+	color: #fff;
+  }
+
+
+  button.qab {
+	margin-top: 2%;
+	margin: 1%;
+	display: flex;
+	font-size: 1.75rem;
+	font-weight: 600;
+	border-radius: 10px;
+	border: 10px solid maroon;
+	background-color: maroon;
+	color: #fff;
+  }
+
 
 @media (max-width: 520px) {
   * {
