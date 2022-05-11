@@ -868,8 +868,8 @@ setTimeout(() => {
       th2.textContent = "Profit/Loss";
       th3.textContent = "Per TT";
 
-      th2.style.backgroundColor = "black";
-      th3.style.backgroundColor = "black";
+      th2.style.backgroundColor = "#004242";
+      th3.style.backgroundColor = "#004242";
 
       th2.style.color = "white";
       th3.style.color = "white";
@@ -976,8 +976,8 @@ setTimeout(() => {
       th2.textContent = "Profit/Loss";
       th3.textContent = "Per TT";
 
-      th2.style.backgroundColor = "black";
-      th3.style.backgroundColor = "black";
+      th2.style.backgroundColor = "#004242";
+      th3.style.backgroundColor = "#004242";
 
       th2.style.color = "white";
       th3.style.color = "white";
@@ -1113,7 +1113,7 @@ setTimeout(() => {
     formattedTotalPL[0] === "+"
       ? `Total Profit at $${currentPrice}`
       : `Total Loss at $${currentPrice}`;
-  allRow.style.backgroundColor = "black";
+  allRow.style.backgroundColor = "#004242";
   allRow.style.color = "white";
   allRow.style.fontSize = "2.1rem";
 
