@@ -107,6 +107,7 @@ section {
 }
 body {
   line-height: 1;
+  margin-bottom: 10%;
 }
 ol,
 ul {
@@ -194,9 +195,16 @@ h3 {
   margin: 1%;
 }
 
+p.signalKey {
+  font-size: 2.5rem;
+}
+
 hr {
   border: 2px dashed black;
-  margin: 3%;
+  margin-right: 3%;
+  margin-left: 3%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .soldStats {
@@ -222,7 +230,7 @@ ul {
 
 li {
   font-family: monospace;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   margin: 0.5% 0%;
 }
 
@@ -235,14 +243,27 @@ p {
   font-weight: bold;
 }
 
-#avgBuy {
-  color: black;
-  font-weight: bold;
-}
-
+#avgBuy,
 #avgSell {
   color: black;
   font-weight: bold;
+  font-size: 3rem;
+}
+
+#totalSold {
+  text-align: center;
+  color: teal;
+  font-size: 3rem;
+  text-decoration: underline;
+  margin-top: 4%;
+}
+
+#totalBought {
+  text-align: center;
+  color: blue;
+  font-size: 3rem;
+  text-decoration: underline;
+  margin-top: 4%;
 }
 
 #sell {
@@ -296,8 +317,10 @@ p {
 }
 
 h1.today {
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-decoration: underline;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .hide {
@@ -333,41 +356,400 @@ h3.numIdx {
 }
 
 .btnHolder {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	margin: 4%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 4%;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
+}
+
+button.kenz {
+  margin-top: 2%;
+  margin: 1%;
+  display: flex;
+  font-size: 1.75rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 10px solid saddlebrown;
+  background-color: saddlebrown;
+  color: #fff;
+  font-family: monospace;
+  vertical-align: middle;
+}
+
+button.reset {
+  margin-top: 2%;
+  margin: 1%;
+  padding: 5px;
+  display: flex;
+  font-size: 1.6rem;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 5px solid teal;
+  background-color: teal;
+  color: #fff;
+  font-family: monospace;
+  vertical-align: middle;
+}
+
+button.qab {
+  margin-top: 2%;
+  margin: 1%;
+  display: flex;
+  font-size: 1.75rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 10px solid maroon;
+  background-color: maroon;
+  color: #fff;
+  font-family: monospace;
+  vertical-align: middle;
+}
+
+.eventCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 75%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 2%;
+  border: 2px black dotted;
+}
+
+.eventCardStriked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 75%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 2%;
+  border: 2px black dotted;
+  text-decoration: line-through;
+}
+
+.timeBH {
+  color: crimson;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.eventP {
+  color: black;
+  font-size: 2rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+div.eventCard > p:first-child {
+  text-decoration: underline;
+}
+
+span.signalSign {
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+
+.liveP {
+  color: crimson;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.dataP {
+  font-size: 2.5rem;
+}
+
+#dailyProfit {
+  font-size: 2.5rem;
+}
+
+.livePL {
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.livePLDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+}
+
+.livePLDiv > table {
+  font-size: 2rem;
+}
+
+.livePLDiv > table,
+td,
+tr {
+  border-collapse: collapse;
+  font-family: monospace;
+}
+
+.livePLDiv > table > tr:first-child {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.livePLDiv > table > tr:last-child {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.livePLDiv > p:first-child {
+  text-align: center;
+  width: 90%;
+}
+
+.livePLDiv > p {
+  text-align: center;
+  width: 95%;
+}
+
+#oldUnfixSection {
+  display: none;
+  flex-direction: column;
+}
+
+.livePLHolder {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#sellPL {
+  text-align: center;
+  border: 1px dashed black;
+}
+
+.physicalUnfixed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3%;
+  margin-bottom: 5%;
+}
+
+.physicalUnfixed > table {
+  font-family: monospace;
+  margin: 5%;
+  font-size: 2rem;
+}
+
+.physicalUnfixed > table tr > td:nth-child(3) {
+  font-size: 1.7rem;
+}
+
+.physicalUnfixed > table,
+td,
+tr,
+th {
+  border: 1px solid black;
+  background-color: #f8f8f8;
+  padding: 8px;
+  text-align: center;
+}
+
+.physicalUnfixed > table th {
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.hider {
+  display: none;
+}
+
+.sausage-links {
+  position: relative;
+}
+.sausage-links:before,
+.sausage-links:after {
+  content: "";
+  height: calc(100% - 2em);
+  pointer-events: none;
+  position: absolute;
+  top: 1em;
+  width: 10px;
+  z-index: 2;
+}
+.sausage-links:before {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);
+  right: 0;
+}
+.sausage-links:after {
+  background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, white 100%);
+  left: 0;
+}
+.sausage-links ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+  padding: 1em 0;
+  -webkit-overflow-scrolling: touch;
+  justify-content: start;
+}
+.sausage-links ul li {
+  padding: 0 8px;
+  white-space: nowrap;
+}
+.sausage-links ul li a,
+.sausage-links ul li a:visited {
+  border: 1px solid black;
+  border-radius: 50px;
+  color: black;
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+.sausage-links ul li a:hover {
+  background: chocolate;
+  border-color: chocolate;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 90, 156, 0.15);
+}
+
+.loadingDiv {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-family: monospace;
+}
+.sbl-circ {
+  height: 48px;
+  width: 48px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #5a5a5a;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  text-align: center;
+}
+
+.progress2 {
+  padding: 1px;
+  border-radius: 10px;
+  background: black;
+}
+
+.progress-bar2 {
+  height: 15px;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.05)
+  );
+  transition: 0.4s linear;
+  transition-property: width, background-color;
+}
+
+.progress-moved .progress-bar2 {
+  width: 100%;
+  background-color: teal;
+  animation: progressAnimation 8.5s;
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 1%;
+    background-color: teal;
+  }
+  100% {
+    width: 100%;
+    background-color: teal;
+  }
 }
 
 
-button.kenz {
-	margin-top: 2%;
-	margin: 1%;
-	display: flex;
-	font-size: 1.75rem;
-	font-weight: 600;
-	border-radius: 10px;
-	border: 10px solid saddlebrown;
-	background-color: saddlebrown;
-	color: #fff;
-  }
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 95%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: black; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  
+}
 
-  button.qab {
-	margin-top: 2%;
-	margin: 1%;
-	display: flex;
-	font-size: 1.75rem;
-	font-weight: 600;
-	border-radius: 10px;
-	border: 10px solid maroon;
-	background-color: maroon;
-	color: #fff;
-  }
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: teal; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: teal; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
 
 
 @media (max-width: 520px) {
@@ -383,13 +765,39 @@ button.kenz {
     padding: 1%;
   }
 
+  h1.today {
+    font-size: 2.7rem;
+  }
+
   h2 {
     font-size: 2.4rem;
     padding: 0% 1%;
   }
 
+  .liveP {
+    font-size: 2.7rem;
+  }
+
+  .dataP {
+    font-size: 2.3rem;
+  }
+
+  p.signalKey {
+    font-size: 2.3rem;
+  }
+
+  #avgBuy,
+  #avgSell {
+    font-size: 2.7rem;
+  }
+
+  #totalSold,
+  #totalBought {
+    font-size: 2.7rem;
+  }
+
   li {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   #internal {
@@ -401,16 +809,12 @@ button.kenz {
   }
 
   h3 {
-    font-size: 2.1rem;
-    font-weight: bold;
-  }
-
-  #totalSold {
+    font-size: 2rem;
     font-weight: bold;
   }
 
   p {
-    font-size: 2.6rem;
+    font-size: 2rem;
   }
 
   .card {
@@ -429,9 +833,13 @@ button.kenz {
     display: flex;
     justify-content: space-around;
   }
+
+  span.signalSign {
+    font-size: 1rem;
+  }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 465px) {
   * {
     box-sizing: border-box;
     padding: 0;
@@ -439,9 +847,17 @@ button.kenz {
     max-width: 100%;
   }
 
+  span.signalSign {
+    font-size: 0.7rem;
+  }
+
   h1 {
     font-size: 3rem;
     padding: 1%;
+  }
+
+  h1.today {
+    font-size: 2.3rem;
   }
 
   h2 {
@@ -449,8 +865,16 @@ button.kenz {
     padding: 0% 1%;
   }
 
+  .liveP {
+    font-size: 2.5rem;
+  }
+
+  .dataP {
+    font-size: 2.1rem;
+  }
+
   li {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
   }
 
   #internal {
@@ -461,12 +885,12 @@ button.kenz {
     font-size: 2rem;
   }
 
-  h3 {
-    font-size: 1.8rem;
-    font-weight: bold;
+  p.signalKey {
+    font-size: 2rem;
   }
 
-  #totalSold {
+  h3 {
+    font-size: 1.8rem;
     font-weight: bold;
   }
 
@@ -475,11 +899,60 @@ button.kenz {
   }
 
   #dailyProfit {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .card {
     font-size: 2.3rem;
+  }
+
+  p.unfixStats {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .livePLDiv > table {
+    font-size: 2rem;
+  }
+  li {
+    font-size: 1.9rem;
+  }
+
+  .liveP {
+    font-size: 2.3rem;
+  }
+
+  .dataP {
+    font-size: 2rem;
+  }
+
+  #avgBuy,
+  #avgSell {
+    font-size: 2.5rem;
+  }
+
+  #totalSold,
+  #totalBought {
+    font-size: 2.5rem;
+  }
+
+  .physicalUnfixed > table {
+    font-family: monospace;
+    margin: 5%;
+    font-size: 1.8rem;
+  }
+
+  .physicalUnfixed > table tr > td:nth-child(3) {
+    font-size: 1.5rem;
+  }
+
+  .physicalUnfixed > table th {
+    font-size: 1.8rem;
+  }
+
+  p{
+    font-size: 1.7rem;
   }
 }
 
@@ -497,7 +970,19 @@ button.kenz {
   }
 
   h1.today {
-    font-size: 1.5rem;
+    font-size: 2rem;
+  }
+
+  .liveP {
+    font-size: 2rem;
+  }
+
+  .dataP {
+    font-size: 1.8rem;
+  }
+
+  p.signalKey {
+    font-size: 1.7rem;
   }
 
   h2 {
@@ -518,25 +1003,175 @@ button.kenz {
     font-weight: bold;
   }
 
-  #totalSold {
-    font-weight: bold;
+  #avgBuy,
+  #avgSell {
+    font-size: 2.1rem;
+  }
+
+  #totalSold,
+  #totalBought {
+    font-size: 2.1rem;
   }
 
   p {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   li {
     font-size: 1.8rem;
   }
 
-  .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin: auto;
+  #dailyProfit {
     font-size: 2rem;
+  }
+
+  .card {
+    font-size: 2rem;
+  }
+
+  p.unfixStats {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .livePLDiv > table {
+    font-size: 1.8rem;
+  }
+  li {
+    font-size: 1.6rem;
+  }
+  .card {
+    font-size: 1.8rem;
+  }
+
+  .physicalUnfixed > table {
+    font-family: monospace;
+    margin: 5%;
+    font-size: 1.5rem;
+  }
+
+  .physicalUnfixed > table tr > td:nth-child(3) {
+    font-size: 1.2rem;
+  }
+
+  p.unfixStats {
+    font-size: 1.5rem;
+  }
+
+  .physicalUnfixed > table th {
+    font-size: 1.5rem;
+  }
+
+  p{
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 330px) {
+  #logo {
+    margin-top: 5%;
+    height: 7vh;
+  }
+
+  .liveP {
+    font-size: 1.7rem;
+  }
+
+  .dataP {
+    font-size: 1.6rem;
+  }
+
+  #avgBuy,
+  #avgSell {
+    font-size: 1.7rem;
+  }
+
+  #totalSold,
+  #totalBought {
+    font-size: 1.7rem;
+  }
+
+  button.kenz,
+  button.qab {
+    font-size: 1.3rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    padding: 1%;
+  }
+
+  h1.today {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    padding: 0% 1%;
+  }
+
+  p.signalKey {
+    font-size: 1.4rem;
+  }
+
+  #internal {
+    font-size: 1.5rem;
+  }
+
+  #net {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  li {
+    font-size: 1.3rem;
+  }
+
+  #key {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    font-size: 1.7rem;
+  }
+
+  .eventP,
+  .timeBH {
+    font-size: 1.5rem;
+  }
+
+  #dailyProfit {
+    font-size: 1.6rem;
+  }
+
+  .physicalUnfixed > table {
+    font-family: monospace;
+    margin: 5%;
+    font-size: 1.2rem;
+  }
+
+  .physicalUnfixed > table tr > td:nth-child(3) {
+    font-size: 0.9rem;
+  }
+
+  .physicalUnfixed > table,
+  td,
+  tr,
+  th {
+    padding: 4px;
+  }
+
+  .physicalUnfixed > table th {
+    font-size: 1.2rem;
+    text-align: center;
   }
 }
