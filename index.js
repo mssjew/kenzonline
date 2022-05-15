@@ -28,6 +28,14 @@ const unfixedDiv = document.getElementById("unfixedSection");
 const livePLDiv = document.getElementById("livePLSection");
 const oldUnfixDiv = document.getElementById("oldUnfixSection");
 
+const thisMonth = document.getElementById("currMonth");
+const totalTrades = document.getElementById("totalTrades");
+const profitTrades = document.getElementById("profitTrades");
+const lossTrades = document.getElementById("lossTrades");
+const tradingLoss = document.getElementById("tradingLoss");
+const tradingProfit = document.getElementById("tradingProfit");
+const grossProfit = document.getElementById("grossProfit");
+
 let loader = `<div class="container">
 <p>Calculating Profit/Loss</p>   
  <div class="progress2 progress-moved">
@@ -58,6 +66,9 @@ const totalBoughtPlainText = "Summary!G40";
 
 const avgSoldPlainText = "Summary!D40";
 const avgBoughtPlainText = "Summary!E40";
+
+const monthlyStats = "Summary!C92:104";
+
 
 var currentPrice;
 
@@ -633,13 +644,47 @@ axios
     console.error(err);
   });
 
-// LIVE PROFIT AND LOSS
+// MONTHLY PERFORMANCE
 
-// var formatter = new Intl.NumberFormat('en-US', {
-//   style: 'currency',
-//   currency: 'BHD',
-//   maximumFractionDigits: 0,
-// });
+axios
+  .get(
+    `https://sheets.googleapis.com/v4/spreadsheets/${ONLINE_SHEET_KEY}/values/${monthlyStats}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+  )
+  .then((resp) => {
+    const monthlyProfitData = resp.data.values[0][0];
+    const totalTradesData = resp.data.values[10][0];
+    const profitTradesData = resp.data.values[2][0];
+    const lossTradesData = resp.data.values[4][0];
+    const tradingProfitData = resp.data.values[6][0];
+    const tradingLossData = resp.data.values[8][0];
+    const currentMonthData = resp.data.values[12][0];
+
+    thisMonth.textContent = currentMonthData;
+    totalTrades.textContent = totalTradesData;
+  
+    profitTrades.textContent = profitTradesData;
+    profitTrades.style.color = "forestgreen"; 
+
+    lossTrades.textContent = lossTradesData;
+    lossTrades.style.color = "crimson"; 
+
+    tradingLoss.textContent = tradingLossData;
+    tradingLoss.style.color = "crimson"; 
+
+    tradingProfit.textContent = tradingProfitData;
+    tradingProfit.style.color = "forestgreen"; 
+
+    grossProfit.textContent = monthlyProfitData;
+    grossProfit.style.color = monthlyProfitData[0]==="B"? "forestgreen" : "crimson"; 
+
+
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+
+// MONTHLY PERFORMANCE END
 
 var liveSellTotalPL = 0;
 var liveBuyTotalPL = 0;
