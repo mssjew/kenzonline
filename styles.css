@@ -230,6 +230,8 @@ li {
   font-family: monospace;
   font-size: 2.4rem;
   margin: 0.5% 0%;
+  padding-bottom: 10px;
+  border-bottom: 2px dotted teal;
 }
 
 p {
@@ -239,6 +241,14 @@ p {
   font-size: 2.1rem;
   font-family: monospace;
   font-weight: bold;
+}
+
+p.posDate {
+  color: black;
+  font-weight: normal;
+  margin-bottom: -3px;
+  margin-top: 5px;
+  font-size: 1.9rem;
 }
 
 #avgBuy,
@@ -874,6 +884,10 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 2rem;
   }
 
+  p.posDate {
+    font-size: 1.8rem;
+  }
+
   .card {
     display: flex;
     justify-content: center;
@@ -970,6 +984,10 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
   p.unfixStats {
     font-size: 1.9rem;
   }
+
+  p.posDate {
+    font-size: 1.7rem;
+  }
 }
 
 @media (max-width: 440px) {
@@ -1014,6 +1032,10 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
 
   p{
     font-size: 1.7rem;
+  }
+
+  p.posDate {
+    font-size: 1.6rem;
   }
 }
 
@@ -1078,6 +1100,10 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.8rem;
   }
 
+  p.posDate {
+    font-size: 1.5rem;
+  }
+
   li {
     font-size: 1.8rem;
   }
@@ -1104,6 +1130,10 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
   }
   .card {
     font-size: 1.8rem;
+  }
+
+  p.posDate {
+    font-size: 1.4rem;
   }
 
   .physicalUnfixed > table {
