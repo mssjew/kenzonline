@@ -179,16 +179,17 @@ function listMakerSell(list, content, idx) {
 
   positionDate.classList.add("posDate")
 
-  if (content[0] === "#N/A") {
-    positionDate.textContent = ""
-  } else {
-    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + dateDiff(parseDate(content[0]), new Date) + " days";
-  }
-
-  
-
   list.appendChild(positionDate);
   list.appendChild(listItem);
+
+  const days = dateDiff(parseDate(content[0]), new Date);
+
+  if (content[0] === "#N/A") {
+    positionDate.textContent = "";
+  } else {
+    positionDate.textContent = days == 0 ? '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "Today" : '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + days + " days";
+  }
+
 
   if (content[1].length <= 23) {
     listItem.textContent = "\xa0" + content[1];
@@ -233,14 +234,16 @@ function listMakerBuy(list, content, idx) {
 
   positionDate.classList.add("posDate")
 
+  list.appendChild(positionDate);
+  list.appendChild(listItem);
+
+  const days = dateDiff(parseDate(content[1]), new Date);
+
   if (content[1] === "#N/A") {
     positionDate.textContent = ""
   } else {
-    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + dateDiff(parseDate(content[1]), new Date) + " days";
+    positionDate.textContent = days == 0 ? '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "Today" : '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + days + " days";
   }
-  
-  list.appendChild(positionDate);
-  list.appendChild(listItem);
 
   if (content[0].length <= 25) {
     listItem.textContent = "\xa0" + content[0];
