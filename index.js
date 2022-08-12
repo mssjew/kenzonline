@@ -105,18 +105,9 @@ async function goldPrice() {
   return resp.data.price;
 }
 
-async function goldPriceHigh() {
-  let resp = await axios.get("https://www.goldapi.io/api/XAU/USD", {
-    headers: { "x-access-token": "goldapi-f20pyjatkuagctl5-io" },
-  });
-  return resp.data.high_price;
-}
-
-async function goldPriceLow() {
-  let resp = await axios.get("https://www.goldapi.io/api/XAU/USD", {
-    headers: { "x-access-token": "goldapi-f20pyjatkuagctl5-io" },
-  });
-  return resp.data.low_price;
+async function goldPrice2() {
+  let resp = await axios.get("https://api.polygon.io/v3/quotes/C:XAU-USD?apiKey=MSrxp0wCzzxnwMtWQaCS9OA3ph2jlA9w");
+  return resp.data.results[0].ask_price;
 }
 
 function pad(idx) {
@@ -139,7 +130,7 @@ function dateDiff(first, second) {
   return Math.round((second-first)/(1000*60*60*24));
 }
 
-goldPrice()
+goldPrice2()
   .then((price) => {
     document.getElementById("liveGPrice").textContent = `$${price}`;
     currentPrice = price;
@@ -147,22 +138,6 @@ goldPrice()
   .catch((err) => {
     currentPrice = 0;
     console.log("Error failed to get price:", err);
-  });
-
-goldPriceHigh()
-  .then((highPrice) => {
-    document.getElementById("gPriceH").textContent = `$${highPrice}`;
-  })
-  .catch((err) => {
-    console.log("Error failed to get high price:", err);
-  });
-
-goldPriceLow()
-  .then((lowPrice) => {
-    document.getElementById("gPriceL").textContent = `$${lowPrice}`;
-  })
-  .catch((err) => {
-    console.log("Error failed to get low price:", err);
   });
 
 // LIST MAKER FUNCTION
@@ -186,8 +161,10 @@ function listMakerSell(list, content, idx) {
 
   if (content[0] === "#N/A") {
     positionDate.textContent = "";
+  } else if (days==0) {
+    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "TODAY";
   } else {
-    positionDate.textContent = days == 0 ? '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "Today" : '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + days + " days";
+    positionDate.textContent = days == 1 ? '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "YESTERDAY" : '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + days + " days";
   }
 
 
@@ -212,7 +189,7 @@ function listMakerSell(list, content, idx) {
     } else {
       signal.innerHTML = "";
     }
-  }, 4000);
+  }, 750);
 
   const indexVal = document.createElement("span");
   indexVal.classList.add("index");
@@ -240,9 +217,11 @@ function listMakerBuy(list, content, idx) {
   const days = dateDiff(parseDate(content[1]), new Date);
 
   if (content[1] === "#N/A") {
-    positionDate.textContent = ""
+    positionDate.textContent = "";
+  } else if (days==0) {
+    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "TODAY";
   } else {
-    positionDate.textContent = days == 0 ? '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "Today" : '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + days + " days";
+    positionDate.textContent = days == 1 ? '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "YESTERDAY" : '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + days + " days";
   }
 
   if (content[0].length <= 25) {
@@ -266,7 +245,7 @@ function listMakerBuy(list, content, idx) {
     } else {
       signal.innerHTML = "";
     }
-  }, 4000);
+  }, 750);
 
   const indexVal = document.createElement("span");
   indexVal.classList.add("index");
@@ -1028,7 +1007,7 @@ setTimeout(() => {
       p.textContent = "Error fetching sell position data. Refresh the page.";
       console.error(err);
     });
-}, 7000);
+}, 1000);
 
 setTimeout(() => {
   axios
@@ -1138,7 +1117,7 @@ setTimeout(() => {
       p.textContent = "Error fetching buy position data. Refresh the page.";
       console.error(err);
     });
-}, 8000);
+}, 1500);
 
 
 var customBuy = document.createElement("p");
@@ -1212,7 +1191,7 @@ setTimeout(() => {
   totalPL.style.fontWeight = "bold";
   totalPL.style.fontStyle = "normal";
 
-}, 9500);
+}, 2000);
 
 setTimeout(() => {
   customProfit(currentPrice);
@@ -1290,4 +1269,4 @@ setTimeout(() => {
     allBoxMiddle.textContent = livePL[0] === "+" ? `Total Profit at $${currentPrice}` : `Total Loss at $${currentPrice}` ;
 
   };
-}, 10000);
+}, 2500);
