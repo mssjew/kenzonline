@@ -127,7 +127,7 @@ function parseDate(str) {
 }
 
 function dateDiff(first, second) {
-  return Math.round((second-first)/(1000*60*60*24));
+  return Math.floor((second-first)/(1000*60*60*24));
 }
 
 goldPrice2()
