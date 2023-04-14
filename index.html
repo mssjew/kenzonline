@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Kenz Online Report</title>
     <link type="text/css" rel="stylesheet" href="normalize.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+      integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -34,6 +40,9 @@
     <br /><br />
     <h2 class="liveP">Live Price:&nbsp;<span id="liveGPrice"></span></h2>
     <br />
+
+    <h3 id="timeUpdated">UPDATED: <span id="lastUpdated"></span></h3>
+    <h3 id="hoursAgo"></h3>
     <!-- <hr> -->
 
     <!-- <h2 style="font-weight: bold;">Price Movement Expected:</h2> -->
@@ -96,18 +105,18 @@
           
       </div> -->
     </div>
-    <br>
+    <br />
     <h2 class="dailyProfitStyle" id="dailyProfit"></h2>
-
 
     <!-- MONTHLY PERFORMANCE -->
     <hr />
     <h1 class="today">Monthly Performance</h1>
-    <br>
+    <br />
     <div class="monthlyPerformance">
-
       <table class="monthlyStatsTable">
-        <tr><th colspan="2" id="currMonth"></th></tr>
+        <tr>
+          <th colspan="2" id="currMonth"></th>
+        </tr>
         <tr>
           <td>Total Trades</td>
           <td id="totalTrades"></td>
@@ -134,16 +143,14 @@
         </tr>
       </table>
     </div>
-    <br>
-    <a  href="/monthly.html">
-      <button class="yesterday" >
-        List of trades this month
-    </button></a>
+    <br />
+    <a href="/monthly.html">
+      <button class="yesterday">List of trades this month</button></a
+    >
     <!-- MONTHLY PERFORMANCE END -->
 
     <br />
     <br />
-
 
     <hr />
 

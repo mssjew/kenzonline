@@ -3,6 +3,9 @@ const ONLINE_SHEET_KEY = '1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk';
 const internalSpan = document.getElementById("internal");
 const netSpan = document.getElementById("net");
 
+const lastUpdatedSpan = document.getElementById("lastUpdated");
+const hoursAgo = document.getElementById("hoursAgo");
+
 const sellList = document.getElementById("sell");
 const buyList = document.getElementById("buy");
 
@@ -43,6 +46,8 @@ let loader = `<div class="container">
 </div>`;
 
 livePLDiv.innerHTML = loader;
+
+const lastUpdatedCell = "Summary!A1";
 
 const internalPos = "Summary!C3";
 const netPos = "Summary!C5";
@@ -96,6 +101,104 @@ let avgBoughtNumber;
 //   livePLDiv.style.display = "none";
 //   oldUnfixDiv.style.display = "flex";
 // }
+
+axios
+  .get(
+    `https://sheets.googleapis.com/v4/spreadsheets/${ONLINE_SHEET_KEY}/values/${lastUpdatedCell}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+  )
+  .then((resp) => {
+    let data = resp.data.values[0][0];
+
+    // the variable data above is a string in the format of "DAY MONTH DD YYYY HHMM"
+    // we need to parse it to get the date and time
+    // then we can calculate the hours ago
+
+    // split the string by space and remove the last two elements
+    let dateFormatted = data.split(" ").slice(0, -2).join(" ");
+
+    let time24 = data.split(" ")[4];
+
+    // convert 4 digit 24 hour to 12 hour time and add pm or am
+    let timeFormatted = time24.slice(0, -2) + ":" + time24.slice(-2);
+    console.log(timeFormatted);
+
+    const dateParts = data.split(" ");
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    // Get the date components
+    const month = months.indexOf(dateParts[1]);
+    const day = parseInt(dateParts[2]);
+    const year = parseInt(dateParts[3]);
+
+    // Get the time components
+    const militaryTime = parseInt(dateParts[4]);
+    const hours = Math.floor(militaryTime / 100);
+    const minutes = militaryTime % 100;
+
+    // Create the date object and set the time
+    const date = new Date(year, month, day);
+    date.setHours(hours, minutes);
+
+    // Calculate the time difference in minutes
+    const timeDifference = Math.abs(date.getTime() - Date.now());
+    const millisecondsPerMinute = 60000;
+
+    if (timeDifference >= 60 * millisecondsPerMinute) {
+      // Time difference is one hour or more, round to nearest hour
+      const hoursDifference = Math.round(timeDifference / 3600000);
+
+      //if the difference is greater than 24 hours, display days ago
+      // else if the difference is less than 24 hours, display hours ago
+      if (hoursDifference >= 24) {
+        lastUpdatedSpan.innerHTML =  Math.round(hoursDifference / 24) + " days ago.";
+      } else {
+        lastUpdatedSpan.innerHTML =  hoursDifference + " hours ago.";
+      }
+    } else {
+      // Time difference is less than one hour, round to nearest minute
+      const minutesDifference = Math.round(
+        timeDifference / millisecondsPerMinute
+      );
+
+      if (minutesDifference === 0) {
+        lastUpdatedSpan.innerHTML =  "Just now.";
+      } else {
+        lastUpdatedSpan.innerHTML =  minutesDifference + " minutes ago.";
+      }
+      
+    }
+
+    // const timeDifference = Math.round(Math.abs((date.getTime() - Date.now()) / 3600000));
+
+    // // 
+    // //if timeDifference is less than 24 hours, display hours ago
+    // //if timeDifference is more than 24 hours, display days ago
+    // //if timeDifference is less than
+
+    // if (timeDifference < 24) {
+    //   lastUpdatedSpan.innerHTML =  timeDifference + " hours ago.";
+    // } else {
+    //   lastUpdatedSpan.innerHTML =  Math.round(timeDifference / 24) + " days ago.";
+    // }
+
+    hoursAgo.innerHTML = "(" + dateFormatted + " " + timeFormatted + ")";
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 async function goldPrice() {
   let resp = await axios.get("https://www.goldapi.io/api/XAU/USD", {
