@@ -62,7 +62,7 @@ const sellRange = "Summary!B11:B38";
 const buyRange = "Summary!C11:C38";
 
 const sellRangeDates = "Summary!A11:B38";
-const buyRangeDates = "Summary!C11:D38";
+const buyRangeDates = "Summary!C11:E38";
 
 const avgSell = "Summary!B40";
 const avgBuy = "Summary!C40";
@@ -74,6 +74,9 @@ const avgSoldPlainText = "Summary!D40";
 const avgBoughtPlainText = "Summary!E40";
 
 const monthlyStats = "Summary!C92:104";
+
+const hamzaSells = "Summary!E11:E38";
+const hamzaBuys = "Summary!F11:F38";
 
 
 var currentPrice;
@@ -302,6 +305,7 @@ function listMakerSell(list, content, idx) {
 }
 
 function listMakerBuy(list, content, idx) {
+
   if (content[0].length > 25) {
     var listedBuyValue = content[0].slice(17, 25);
   } else {
@@ -339,6 +343,17 @@ function listMakerBuy(list, content, idx) {
   signal.classList.add("signalSign");
 
   listItem.appendChild(signal);
+
+  if(content.length > 2) {
+    const hamzaIdentifier = document.createElement("p");
+    hamzaIdentifier.classList.add("hamzaIdentifier");
+    hamzaIdentifier.innerHTML = "Hamza Trade";
+  
+    listItem.appendChild(hamzaIdentifier);
+  }
+
+
+ 
 
   setTimeout(() => {
     if (currentPrice > 0 && !isNaN(buyPrice)) {
