@@ -264,6 +264,7 @@ li {
 .hamzaIdentifier {
   text-align: center;
   color: purple;
+  font-size: 2rem;
 }
 
 p {
@@ -924,6 +925,11 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 2rem;
   }
 
+  .hamzaIdentifier {
+ 
+    font-size: 1.8rem;
+  }
+
   p.posDate {
     font-size: 1.8rem;
   }
@@ -1016,6 +1022,12 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 2rem;
   }
 
+
+  .hamzaIdentifier {
+ 
+    font-size: 1.7rem;
+  }
+
   .dailyProfitStyle {
     font-size: 2.5rem;
   }
@@ -1075,6 +1087,12 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
 
   p {
     font-size: 1.7rem;
+  }
+
+
+  .hamzaIdentifier {
+ 
+    font-size: 1.5rem;
   }
 
   p.posDate {
@@ -1143,6 +1161,12 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.8rem;
   }
 
+
+  .hamzaIdentifier {
+ 
+    font-size: 1.4rem;
+  }
+
   p.posDate {
     font-size: 1.5rem;
   }
@@ -1199,6 +1223,12 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
 
   p {
     font-size: 1.6rem;
+  }
+
+
+  .hamzaIdentifier {
+ 
+    font-size: 1.3rem;
   }
 }
 
@@ -1264,6 +1294,12 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
 
   p {
     font-size: 1.5rem;
+  }
+
+
+  .hamzaIdentifier {
+ 
+    font-size: 1.2rem;
   }
 
   li {
