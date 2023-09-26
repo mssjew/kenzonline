@@ -214,6 +214,7 @@ h2 {
   font-weight: bold;
 }
 
+
 h3 {
   font-size: 2.5rem;
   font-weight: 500;
@@ -305,6 +306,34 @@ p.posDate {
   font-size: 3rem;
   text-decoration: underline;
   margin-top: 4%;
+}
+
+#swapExplain {
+  text-align: center;
+  color: #333333; /* Dark grey text */
+    background-color: #ffffcc; /* Light yellow background */
+    padding: 10px; /* Add some padding */
+    border: 1px solid #cccccc; /* Grey border */
+    border-radius: 5px; /* Round corners */
+    margin-top: -3px;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+#swapCharges {
+  color: #ff0000; /* Red text */
+  font-weight: bold; /* Make the text bold */
+  background-color: #ffffcc; /* Yellow background */
+  border: 1px solid #cccccc; /* Grey border */
+
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 5px; /* Add some padding */
+  border-radius: 5px; /* Round corners */
+  font-size: 2.75rem;
 }
 
 #sell {
@@ -926,7 +955,6 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
   }
 
   .hamzaIdentifier {
- 
     font-size: 1.8rem;
   }
 
@@ -959,8 +987,6 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
   span.signalSign {
     font-size: 1rem;
   }
-
-
 }
 
 @media (max-width: 465px) {
@@ -1022,9 +1048,7 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 2rem;
   }
 
-
   .hamzaIdentifier {
- 
     font-size: 1.7rem;
   }
 
@@ -1089,9 +1113,7 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.7rem;
   }
 
-
   .hamzaIdentifier {
- 
     font-size: 1.5rem;
   }
 
@@ -1161,9 +1183,7 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.8rem;
   }
 
-
   .hamzaIdentifier {
- 
     font-size: 1.4rem;
   }
 
@@ -1225,9 +1245,7 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.6rem;
   }
 
-
   .hamzaIdentifier {
- 
     font-size: 1.3rem;
   }
 }
@@ -1296,9 +1314,7 @@ table.monthlyStatsTable > tbody > tr:last-child > td {
     font-size: 1.5rem;
   }
 
-
   .hamzaIdentifier {
- 
     font-size: 1.2rem;
   }
 

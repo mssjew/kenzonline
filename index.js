@@ -1,4 +1,5 @@
 const ONLINE_SHEET_KEY = '1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk';
+const STATEMENT_SHEET_KEY = '1QJhzDm0gkAiXsRSbtFCq5FS2hdQ-1uWOTj5z55Cz2cM';
 
 const internalSpan = document.getElementById("internal");
 const netSpan = document.getElementById("net");
@@ -36,6 +37,9 @@ const lossTrades = document.getElementById("lossTrades");
 const tradingLoss = document.getElementById("tradingLoss");
 const tradingProfit = document.getElementById("tradingProfit");
 const grossProfit = document.getElementById("grossProfit");
+
+const swapAlert = document.getElementById("swapCharges");
+
 
 let loader = `<div class="container">
 <p>Calculating Profit/Loss</p>   
@@ -77,6 +81,8 @@ const monthlyStats = "Summary!C92:104";
 
 const hamzaSells = "Summary!E11:E38";
 const hamzaBuys = "Summary!F11:F38";
+
+const statementPos = "data_live!B229:B230";
 
 
 var currentPrice;
@@ -245,6 +251,9 @@ goldPrice2()
     currentPrice = 0;
     console.log("Error failed to get price:", err);
   });
+
+
+  // ENTER HERE
 
 // LIST MAKER FUNCTION
 function listMakerSell(list, content, idx) {
@@ -439,6 +448,35 @@ function unfixedTotalRow() {
   td4.style.fontSize = "2.4rem";
 }
 
+
+axios
+  .get(
+    `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+  )
+  .then((resp) => {
+    const dollarValue = (resp.data.values[0][0]);
+    const grammageBalance = (resp.data.values[1][0].replace(/,/g, ''));
+
+    const grammageBalanceValue = parseFloat(grammageBalance);
+
+
+
+    
+
+    if (grammageBalanceValue > 0) {
+
+      swapAlert.textContent = `SWAP CHARGES = Zero (Net Short)`;
+    } else {
+
+      swapValue = ((Math.abs(grammageBalance))/31.10347)*.30;
+      swapAlert.textContent = `$${swapValue.toFixed(2)}`;
+    }
+
+
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 // TOTAL SOLD PLAIN TEXT
 axios
