@@ -493,7 +493,7 @@ setTimeout(() => {
         console.log("Error failed to get price:", err);
       });
       
-    }, 10000);
+    }, 7500);
    
 
     if (grammageBalanceValue > 0) {
@@ -510,7 +510,7 @@ setTimeout(() => {
   .catch((err) => {
     console.error(err);
   });
-}, 1000);
+}, 1500);
 
 
 // TOTAL SOLD PLAIN TEXT
