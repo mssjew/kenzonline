@@ -229,15 +229,16 @@ h2 {
   font-size: 2rem;
 }
 @keyframes flash {
-  0%, 50% { color: black; }   /* Fully visible */
-  25%, 75% { color: #808080; } /* Completely transparent */
+  0%, 50% { color: white; }   /* Fully visible */
+  25%, 75% { color: orange; } /* Completely transparent */
 }
 .liveGroup p:nth-child(2) {
-  animation: flash 4s linear infinite;
+  animation: flash 3s linear infinite;
 }
 
 .liveGroup p {
-  background-color: #fd829a; /* Slightly darker grey background */
+  background-color: #881e33; /* Slightly darker grey background */
+  color: white;
 
 }
 

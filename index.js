@@ -471,28 +471,30 @@ setTimeout(() => {
 
     document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
 
-
-    goldPrice2()
-    .then((price) => {
-     
-      let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
-      let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
-      document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-
-      // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
-
-      // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-
-
-
-
-
-    })
-    .catch((err) => {
-      currentPrice = 0;
-      console.log("Error failed to get price:", err);
-    });
-    
+    setInterval(() => {
+      goldPrice2()
+      .then((price) => {
+       
+        let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+        let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
+        document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+  
+        // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
+  
+        // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+  
+  
+  
+  
+  
+      })
+      .catch((err) => {
+        currentPrice = 0;
+        console.log("Error failed to get price:", err);
+      });
+      
+    }, 10000);
+   
 
     if (grammageBalanceValue > 0) {
 
