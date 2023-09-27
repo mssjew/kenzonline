@@ -448,19 +448,50 @@ function unfixedTotalRow() {
   td4.style.fontSize = "2.4rem";
 }
 
-
-axios
+setTimeout(() => {
+  axios
   .get(
     `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
   )
   .then((resp) => {
-    const dollarValue = (resp.data.values[0][0]);
+    const dollarBalance = (resp.data.values[0][0].replace(/,/g, ''));
     const grammageBalance = (resp.data.values[1][0].replace(/,/g, ''));
 
+    const dollarBalanceValue = parseFloat(dollarBalance);
     const grammageBalanceValue = parseFloat(grammageBalance);
 
+    const openTTs = Math.abs(Math.round(grammageBalanceValue/116.523));
+
+    console.log(openTTs);
+    console.log(dollarBalanceValue);
+
+    let accountSettledBalanceUSD = (((openTTs*avgBoughtNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+
+    let accountSettledBalanceBHD = accountSettledBalanceUSD*0.377;
+
+    document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
 
 
+    goldPrice2()
+    .then((price) => {
+     
+      let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+      let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
+      document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+
+      // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
+
+      // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+
+
+
+
+
+    })
+    .catch((err) => {
+      currentPrice = 0;
+      console.log("Error failed to get price:", err);
+    });
     
 
     if (grammageBalanceValue > 0) {
@@ -477,6 +508,8 @@ axios
   .catch((err) => {
     console.error(err);
   });
+}, 1000);
+
 
 // TOTAL SOLD PLAIN TEXT
 axios

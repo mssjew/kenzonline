@@ -214,6 +214,37 @@ h2 {
   font-weight: bold;
 }
 
+#agkHeader {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.settledGroup p {
+  background-color: #006800; /* Light grey background */
+  color: white;
+
+}
+
+.settledGroup p:nth-child(2), .liveGroup p:nth-child(2) {
+  font-size: 2rem;
+}
+@keyframes flash {
+  0%, 50% { color: black; }   /* Fully visible */
+  25%, 75% { color: #808080; } /* Completely transparent */
+}
+.liveGroup p:nth-child(2) {
+  animation: flash 4s linear infinite;
+}
+
+.liveGroup p {
+  background-color: #fd829a; /* Slightly darker grey background */
+
+}
+
+
+
+
+
 
 h3 {
   font-size: 2.5rem;
