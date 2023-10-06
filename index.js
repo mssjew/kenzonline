@@ -82,7 +82,7 @@ const monthlyStats = "Summary!C92:104";
 const hamzaSells = "Summary!E11:E38";
 const hamzaBuys = "Summary!F11:F38";
 
-const statementPos = "data_live!B229:B230";
+const statementPos = "data_live!B242:B243";
 
 
 var currentPrice;
@@ -456,6 +456,9 @@ setTimeout(() => {
   .then((resp) => {
     const dollarBalance = (resp.data.values[0][0].replace(/,/g, ''));
     const grammageBalance = (resp.data.values[1][0].replace(/,/g, ''));
+
+    console.log(dollarBalance);
+    console.log(grammageBalance);
 
     const dollarBalanceValue = parseFloat(dollarBalance);
     const grammageBalanceValue = parseFloat(grammageBalance);
