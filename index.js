@@ -448,72 +448,89 @@ function unfixedTotalRow() {
   td4.style.fontSize = "2.4rem";
 }
 
-setTimeout(() => {
-  axios
-  .get(
-    `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
-  )
-  .then((resp) => {
-    const dollarBalance = (resp.data.values[0][0].replace(/,/g, ''));
-    const grammageBalance = (resp.data.values[1][0].replace(/,/g, ''));
+// setTimeout(() => {
+//   axios
+//   .get(
+//     `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+//   )
+//   .then((resp) => {
+//     const grammageBalance = (resp.data.values[0][0].replace(/,/g, ''));
+//     const dollarBalance = (resp.data.values[1][0].replace(/,/g, ''));
 
-    console.log(dollarBalance);
-    console.log(grammageBalance);
 
-    const dollarBalanceValue = parseFloat(dollarBalance);
-    const grammageBalanceValue = parseFloat(grammageBalance);
+//     const dollarBalanceValue = parseFloat(dollarBalance);
+//     const grammageBalanceValue = parseFloat(grammageBalance);
 
-    const openTTs = Math.abs(Math.round(grammageBalanceValue/116.523));
+//     console.log(dollarBalanceValue);
+//     console.log(grammageBalanceValue);
 
-    console.log(openTTs);
-    console.log(dollarBalanceValue);
+//     const openTTs = Math.abs(Math.round(grammageBalanceValue/116.523));
 
-    let accountSettledBalanceUSD = (((openTTs*avgBoughtNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+//     console.log(openTTs);
+//     console.log(dollarBalanceValue);
 
-    let accountSettledBalanceBHD = accountSettledBalanceUSD*0.377;
+//     let accountSettledBalanceUSD;
 
-    document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+//     if(openTTs >= 1) {
+//       if (grammageBalanceValue > 0) {
+//         accountSettledBalanceUSD = (((openTTs*avgBoughtNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+//       } else {
+//         accountSettledBalanceUSD = (((openTTs*avgSoldNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+//       }
+//     } else {
+//       accountSettledBalanceUSD = dollarBalanceValue;
+//     }
 
-    setInterval(() => {
-      goldPrice2()
-      .then((price) => {
+
+
+
+
+    
+
+//     let accountSettledBalanceBHD = accountSettledBalanceUSD*0.377;
+
+//     document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+
+//     setInterval(() => {
+//       goldPrice2()
+//       .then((price) => {
        
-        let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
-        let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
-        document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+//         let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
+//         let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
+//         document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
   
-        // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
+//         // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
   
-        // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-  
-  
+//         // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
   
   
   
-      })
-      .catch((err) => {
-        currentPrice = 0;
-        console.log("Error failed to get price:", err);
-      });
+  
+  
+//       })
+//       .catch((err) => {
+//         currentPrice = 0;
+//         console.log("Error failed to get price:", err);
+//       });
       
-    }, 7500);
+//     }, 7500);
    
 
-    if (grammageBalanceValue > 0) {
+//     if (grammageBalanceValue > 0) {
 
-      swapAlert.textContent = `SWAP CHARGES = Zero (Net Short)`;
-    } else {
+//       swapAlert.textContent = `SWAP CHARGES = Zero`;
+//     } else {
 
-      swapValue = ((Math.abs(grammageBalance))/31.10347)*.30;
-      swapAlert.textContent = `$${swapValue.toFixed(2)}`;
-    }
+//       swapValue = ((Math.abs(grammageBalance))/31.10347)*.30;
+//       swapAlert.textContent = `$${swapValue.toFixed(2)}`;
+//     }
 
 
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-}, 1500);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+// }, 1500);
 
 
 // TOTAL SOLD PLAIN TEXT
