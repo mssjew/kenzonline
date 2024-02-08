@@ -1,6 +1,9 @@
 const ONLINE_SHEET_KEY = '1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk';
 const STATEMENT_SHEET_KEY = '1QJhzDm0gkAiXsRSbtFCq5FS2hdQ-1uWOTj5z55Cz2cM';
 
+const API_KEY = "mQK2zB2lxayaitBVpJEC";
+
+
 const internalSpan = document.getElementById("internal");
 const netSpan = document.getElementById("net");
 
@@ -218,7 +221,7 @@ async function goldPrice() {
 }
 
 async function goldPrice2() {
-  let resp = await axios.get("https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=UdH2AVy1g_PfTObGqA9d");
+  let resp = await axios.get(`https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY}`);
   return resp.data.quotes[0].ask;
 }
 
