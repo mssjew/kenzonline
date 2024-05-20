@@ -1487,15 +1487,3 @@ setTimeout(() => {
 }, 2500);
 
 
-
-setTimeout(() => {
-  console.log("entered swap calc");
-  if (totalBoughtNumber <= 0) {
-    swapAlert.textContent = `SWAP CHARGES = Zero`;
-  } else {
-    let swapValue = (totalBoughtNumber/ 31.10347) * 0.3; //30 cents per ounce swap charge per night
-    swapAlert.textContent = `$${swapValue.toFixed(2)}`;
-  }
-}, 1500);
-
-
