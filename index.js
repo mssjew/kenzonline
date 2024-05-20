@@ -1,8 +1,7 @@
-const ONLINE_SHEET_KEY = '1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk';
-const STATEMENT_SHEET_KEY = '1QJhzDm0gkAiXsRSbtFCq5FS2hdQ-1uWOTj5z55Cz2cM';
+const ONLINE_SHEET_KEY = "1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk";
+const STATEMENT_SHEET_KEY = "1QJhzDm0gkAiXsRSbtFCq5FS2hdQ-1uWOTj5z55Cz2cM";
 
 const API_KEY = "mQK2zB2lxayaitBVpJEC";
-
 
 const internalSpan = document.getElementById("internal");
 const netSpan = document.getElementById("net");
@@ -43,7 +42,6 @@ const grossProfit = document.getElementById("grossProfit");
 
 const swapAlert = document.getElementById("swapCharges");
 
-
 let loader = `<div class="container">
 <p>Calculating Profit/Loss</p>   
  <div class="progress2 progress-moved">
@@ -74,8 +72,8 @@ const buyRangeDates = "Summary!C11:E38";
 const avgSell = "Summary!B40";
 const avgBuy = "Summary!C40";
 
-const totalSoldPlainText = "Summary!F40";
-const totalBoughtPlainText = "Summary!G40";
+const totalSoldPlainText = "Summary!G40";
+const totalBoughtPlainText = "Summary!F40";
 
 const avgSoldPlainText = "Summary!D40";
 const avgBoughtPlainText = "Summary!E40";
@@ -87,11 +85,10 @@ const hamzaBuys = "Summary!F11:F38";
 
 const statementPos = "data_live!B242:B243";
 
-
 var currentPrice;
 
-let totalSoldNumber;
-let totalBoughtNumber;
+var totalSoldNumber;
+var totalBoughtNumber;
 
 let avgSoldNumber;
 let avgBoughtNumber;
@@ -175,9 +172,10 @@ axios
       //if the difference is greater than 24 hours, display days ago
       // else if the difference is less than 24 hours, display hours ago
       if (hoursDifference >= 24) {
-        lastUpdatedSpan.innerHTML =  Math.round(hoursDifference / 24) + " days ago.";
+        lastUpdatedSpan.innerHTML =
+          Math.round(hoursDifference / 24) + " days ago.";
       } else {
-        lastUpdatedSpan.innerHTML =  hoursDifference + " hours ago.";
+        lastUpdatedSpan.innerHTML = hoursDifference + " hours ago.";
       }
     } else {
       // Time difference is less than one hour, round to nearest minute
@@ -186,16 +184,15 @@ axios
       );
 
       if (minutesDifference === 0) {
-        lastUpdatedSpan.innerHTML =  "Just now.";
+        lastUpdatedSpan.innerHTML = "Just now.";
       } else {
-        lastUpdatedSpan.innerHTML =  minutesDifference + " minutes ago.";
+        lastUpdatedSpan.innerHTML = minutesDifference + " minutes ago.";
       }
-      
     }
 
     // const timeDifference = Math.round(Math.abs((date.getTime() - Date.now()) / 3600000));
 
-    // // 
+    // //
     // //if timeDifference is less than 24 hours, display hours ago
     // //if timeDifference is more than 24 hours, display days ago
     // //if timeDifference is less than
@@ -221,7 +218,9 @@ async function goldPrice() {
 }
 
 async function goldPrice2() {
-  let resp = await axios.get(`https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY}`);
+  let resp = await axios.get(
+    `https://marketdata.tradermade.com/api/v1/live?currency=XAUUSD&api_key=${API_KEY}`
+  );
   return resp.data.quotes[0].ask;
 }
 
@@ -232,17 +231,27 @@ function pad(idx) {
 }
 
 function parseDate(str) {
-  let monthNames =["Jan","Feb","Mar","Apr",
-                      "May","Jun","Jul","Aug",
-                      "Sep", "Oct","Nov","Dec"];
+  let monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-  var ymd = str.split('-');
-  return new Date('20'+ymd[2], monthNames.indexOf(ymd[1]), ymd[0]);
-
+  var ymd = str.split("-");
+  return new Date("20" + ymd[2], monthNames.indexOf(ymd[1]), ymd[0]);
 }
 
 function dateDiff(first, second) {
-  return Math.floor((second-first)/(1000*60*60*24));
+  return Math.floor((second - first) / (1000 * 60 * 60 * 24));
 }
 
 goldPrice2()
@@ -255,8 +264,7 @@ goldPrice2()
     console.log("Error failed to get price:", err);
   });
 
-
-  // ENTER HERE
+// ENTER HERE
 
 // LIST MAKER FUNCTION
 function listMakerSell(list, content, idx) {
@@ -270,22 +278,25 @@ function listMakerSell(list, content, idx) {
   const listItem = document.createElement("li");
   const positionDate = document.createElement("p");
 
-  positionDate.classList.add("posDate")
+  positionDate.classList.add("posDate");
 
   list.appendChild(positionDate);
   list.appendChild(listItem);
 
-  const days = dateDiff(parseDate(content[0]), new Date);
+  const days = dateDiff(parseDate(content[0]), new Date());
 
   if (content[0] === "#N/A") {
     positionDate.textContent = "";
-  } else if (days==0) {
-    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "TODAY";
+  } else if (days == 0) {
+    positionDate.textContent =
+      "\xa0\xa0\xa0\xa0" + content[0] + "\xa0\xa0\xa0" + "TODAY";
     positionDate.classList.add("yellowB");
   } else {
-    positionDate.textContent = days == 1 ? '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + "YESTERDAY" : '\xa0\xa0\xa0\xa0' + content[0] + '\xa0\xa0\xa0' + days + " days";
+    positionDate.textContent =
+      days == 1
+        ? "\xa0\xa0\xa0\xa0" + content[0] + "\xa0\xa0\xa0" + "YESTERDAY"
+        : "\xa0\xa0\xa0\xa0" + content[0] + "\xa0\xa0\xa0" + days + " days";
   }
-
 
   if (content[1].length <= 23) {
     listItem.textContent = "\xa0" + content[1];
@@ -317,7 +328,6 @@ function listMakerSell(list, content, idx) {
 }
 
 function listMakerBuy(list, content, idx) {
-
   if (content[0].length > 25) {
     var listedBuyValue = content[0].slice(17, 25);
   } else {
@@ -329,20 +339,24 @@ function listMakerBuy(list, content, idx) {
   const listItem = document.createElement("li");
   const positionDate = document.createElement("p");
 
-  positionDate.classList.add("posDate")
+  positionDate.classList.add("posDate");
 
   list.appendChild(positionDate);
   list.appendChild(listItem);
 
-  const days = dateDiff(parseDate(content[1]), new Date);
+  const days = dateDiff(parseDate(content[1]), new Date());
 
   if (content[1] === "#N/A") {
     positionDate.textContent = "";
-  } else if (days==0) {
-    positionDate.textContent = '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "TODAY";
+  } else if (days == 0) {
+    positionDate.textContent =
+      "\xa0\xa0\xa0\xa0" + content[1] + "\xa0\xa0\xa0" + "TODAY";
     positionDate.classList.add("yellowB");
   } else {
-    positionDate.textContent = days == 1 ? '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + "YESTERDAY" : '\xa0\xa0\xa0\xa0' + content[1] + '\xa0\xa0\xa0' + days + " days";
+    positionDate.textContent =
+      days == 1
+        ? "\xa0\xa0\xa0\xa0" + content[1] + "\xa0\xa0\xa0" + "YESTERDAY"
+        : "\xa0\xa0\xa0\xa0" + content[1] + "\xa0\xa0\xa0" + days + " days";
   }
 
   if (content[0].length <= 25) {
@@ -356,16 +370,13 @@ function listMakerBuy(list, content, idx) {
 
   listItem.appendChild(signal);
 
-  if(content.length > 2) {
+  if (content.length > 2) {
     const hamzaIdentifier = document.createElement("p");
     hamzaIdentifier.classList.add("hamzaIdentifier");
     hamzaIdentifier.innerHTML = "Hamza Trade";
-  
+
     listItem.appendChild(hamzaIdentifier);
   }
-
-
- 
 
   setTimeout(() => {
     if (currentPrice > 0 && !isNaN(buyPrice)) {
@@ -451,90 +462,83 @@ function unfixedTotalRow() {
   td4.style.fontSize = "2.4rem";
 }
 
-setTimeout(() => {
-  axios
-  .get(
-    `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
-  )
-  .then((resp) => {
-    const grammageBalance = (resp.data.values[0][0].replace(/,/g, ''));
-    const dollarBalance = (resp.data.values[1][0].replace(/,/g, ''));
+// setTimeout(() => {
+//   // axios
+//   //   .get(
+//   //     `https://sheets.googleapis.com/v4/spreadsheets/${STATEMENT_SHEET_KEY}/values/${statementPos}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+//   //   )
+//   //   .then((resp) => {
+//   //     const grammageBalance = resp.data.values[0][0].replace(/,/g, "");
+//   //     const dollarBalance = resp.data.values[1][0].replace(/,/g, "");
 
+//   //     const dollarBalanceValue = parseFloat(dollarBalance);
+//   //     const grammageBalanceValue = parseFloat(grammageBalance);
 
-    const dollarBalanceValue = parseFloat(dollarBalance);
-    const grammageBalanceValue = parseFloat(grammageBalance);
+//   //     console.log(dollarBalanceValue);
+//   //     console.log(grammageBalanceValue);
 
-    console.log(dollarBalanceValue);
-    console.log(grammageBalanceValue);
+//   //     const openTTs = Math.abs(Math.round(grammageBalanceValue / 116.523));
 
-    const openTTs = Math.abs(Math.round(grammageBalanceValue/116.523));
+//   //     console.log(openTTs);
+//   //     console.log(dollarBalanceValue);
 
-    console.log(openTTs);
-    console.log(dollarBalanceValue);
+//   //     let accountSettledBalanceUSD;
 
-    let accountSettledBalanceUSD;
+//   //     if (openTTs >= 1) {
+//   //       if (grammageBalanceValue > 0) {
+//   //         accountSettledBalanceUSD =
+//   //           (openTTs * avgBoughtNumber * 116.523) / 31.10347 -
+//   //           Math.abs(dollarBalanceValue);
+//   //       } else {
+//   //         accountSettledBalanceUSD =
+//   //           (openTTs * avgSoldNumber * 116.523) / 31.10347 -
+//   //           Math.abs(dollarBalanceValue);
+//   //       }
+//   //     } else {
+//   //       accountSettledBalanceUSD = dollarBalanceValue;
+//   //     }
 
-    if(openTTs >= 1) {
-      if (grammageBalanceValue > 0) {
-        accountSettledBalanceUSD = (((openTTs*avgBoughtNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
-      } else {
-        accountSettledBalanceUSD = (((openTTs*avgSoldNumber*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
-      }
-    } else {
-      accountSettledBalanceUSD = dollarBalanceValue;
-    }
+//   //     let accountSettledBalanceBHD = accountSettledBalanceUSD * 0.377;
 
+//   //     // document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
 
+//   //     goldPrice2()
+//   //       .then((price) => {
+//   //         let accountLiveBalanceUSD =
+//   //           (openTTs * price * 116.523) / 31.10347 -
+//   //           Math.abs(dollarBalanceValue);
+//   //         let accountLiveBalanceBHD = accountLiveBalanceUSD * 0.377;
+//   //         document.getElementById(
+//   //           "agkLiveBalance"
+//   //         ).textContent = `${accountLiveBalanceBHD.toLocaleString("en-US", {
+//   //           style: "currency",
+//   //           currency: "BHD",
+//   //           minimumFractionDigits: 3,
+//   //           maximumFractionDigits: 3,
+//   //         })}`;
 
+//   //         // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
 
+//   //         // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+//   //       })
+//   //       .catch((err) => {
+//   //         currentPrice = 0;
+//   //         console.log("Error failed to get price:", err);
+//   //       });
+
+//   //     if (grammageBalanceValue > 0) {
+//   //       swapAlert.textContent = `SWAP CHARGES = Zero`;
+//   //     } else {
+//   //       swapValue = (Math.abs(grammageBalance) / 31.10347) * 0.3; //30 cents per ounce swap charge per night
+//   //       swapAlert.textContent = `$${swapValue.toFixed(2)}`;
+//   //     }
+//   //   })
+//   //   .catch((err) => {
+//   //     console.error(err);
+//   //   });
 
     
-
-    let accountSettledBalanceBHD = accountSettledBalanceUSD*0.377;
-
-    // document.getElementById("agkBalance").textContent = `${accountSettledBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-
-    setInterval(() => {
-      goldPrice2()
-      .then((price) => {
-       
-        let accountLiveBalanceUSD = (((openTTs*price*116.523)/31.10347)-(Math.abs(dollarBalanceValue)));
-        let accountLiveBalanceBHD = accountLiveBalanceUSD*0.377;
-        document.getElementById("agkLiveBalance").textContent = `${accountLiveBalanceBHD.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-  
-        // let liveDifference = accountLiveBalanceBHD - accountSettledBalanceBHD;
-  
-        // document.getElementById("liveDifference").textContent = `${liveDifference.toLocaleString('en-US', { style: 'currency', currency: 'BHD', minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
-  
-  
-  
-  
-  
-      })
-      .catch((err) => {
-        currentPrice = 0;
-        console.log("Error failed to get price:", err);
-      });
-      
-    }, 7500);
-   
-
-    if (grammageBalanceValue > 0) {
-
-      swapAlert.textContent = `SWAP CHARGES = Zero`;
-    } else {
-
-      swapValue = ((Math.abs(grammageBalance))/31.10347)*.30;
-      swapAlert.textContent = `$${swapValue.toFixed(2)}`;
-    }
-
-
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-}, 1500);
-
+// }, 1000);
 
 // TOTAL SOLD PLAIN TEXT
 axios
@@ -543,18 +547,27 @@ axios
   )
   .then((resp) => {
     totalSoldNumber = parseFloat(resp.data.values[0][0]);
+
   })
   .catch((err) => {
     console.error(err);
   });
 
-// TOTAL BOUGHT PLAIN TEXT
-axios
+
+  axios
   .get(
     `https://sheets.googleapis.com/v4/spreadsheets/${ONLINE_SHEET_KEY}/values/${totalBoughtPlainText}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
   )
   .then((resp) => {
     totalBoughtNumber = parseFloat(resp.data.values[0][0]);
+
+    // Calculate swap charges after totalBoughtNumber is fetched
+    if (totalBoughtNumber <= 0) {
+      swapAlert.textContent = `SWAP CHARGES = Zero`;
+    } else {
+      let swapValue = (totalBoughtNumber * 3.746) * 0.3; //30 cents per ounce swap charge per night
+      swapAlert.textContent = `$${swapValue.toFixed(2)} DAILY SWAP CHARGES`;
+    }
   })
   .catch((err) => {
     console.error(err);
@@ -898,28 +911,26 @@ axios
 
     thisMonth.textContent = currentMonthData;
     totalTrades.textContent = totalTradesData;
-  
+
     profitTrades.textContent = profitTradesData;
-    profitTrades.style.color = "forestgreen"; 
+    profitTrades.style.color = "forestgreen";
 
     lossTrades.textContent = lossTradesData;
-    lossTrades.style.color = "crimson"; 
+    lossTrades.style.color = "crimson";
 
     tradingLoss.textContent = tradingLossData;
-    tradingLoss.style.color = "crimson"; 
+    tradingLoss.style.color = "crimson";
 
     tradingProfit.textContent = tradingProfitData;
-    tradingProfit.style.color = "forestgreen"; 
+    tradingProfit.style.color = "forestgreen";
 
     grossProfit.textContent = monthlyProfitData;
-    grossProfit.style.color = monthlyProfitData[0]==="B"? "forestgreen" : "crimson"; 
-
-
+    grossProfit.style.color =
+      monthlyProfitData[0] === "B" ? "forestgreen" : "crimson";
   })
   .catch((err) => {
     console.error(err);
   });
-
 
 // MONTHLY PERFORMANCE END
 
@@ -935,12 +946,12 @@ const customProfit = (price) => {
   let buyCustomPL = 0;
   let customProfitAmount = 0;
 
-  for(let i=0; i<sellPositions.length; i++) {
-    sellCustomPL += ((sellPositions[i]-price)*sellAmounts[i]*3.746*.377);
+  for (let i = 0; i < sellPositions.length; i++) {
+    sellCustomPL += (sellPositions[i] - price) * sellAmounts[i] * 3.746 * 0.377;
   }
 
-  for(let i=0; i<buyPositions.length; i++) {
-    buyCustomPL += ((price-buyPositions[i])*buyAmounts[i]*3.746*.377);
+  for (let i = 0; i < buyPositions.length; i++) {
+    buyCustomPL += (price - buyPositions[i]) * buyAmounts[i] * 3.746 * 0.377;
   }
 
   customProfitAmount = sellCustomPL + buyCustomPL;
@@ -952,15 +963,13 @@ const customProfit = (price) => {
     maximumFractionDigits: 0,
     signDisplay: "exceptZero",
   });
-
-}
+};
 
 const customSellProfit = (price) => {
   let sellCustomPL = 0;
 
-
-  for(let i=0; i<sellPositions.length; i++) {
-    sellCustomPL += ((sellPositions[i]-price)*sellAmounts[i]*3.746*.377);
+  for (let i = 0; i < sellPositions.length; i++) {
+    sellCustomPL += (sellPositions[i] - price) * sellAmounts[i] * 3.746 * 0.377;
   }
 
   return sellCustomPL.toLocaleString("en-US", {
@@ -970,14 +979,13 @@ const customSellProfit = (price) => {
     maximumFractionDigits: 0,
     signDisplay: "exceptZero",
   });
-
-}
+};
 
 const customBuyProfit = (price) => {
   let buyCustomPL = 0;
 
-  for(let i=0; i<buyPositions.length; i++) {
-    buyCustomPL += ((price-buyPositions[i])*buyAmounts[i]*3.746*.377);
+  for (let i = 0; i < buyPositions.length; i++) {
+    buyCustomPL += (price - buyPositions[i]) * buyAmounts[i] * 3.746 * 0.377;
   }
 
   return buyCustomPL.toLocaleString("en-US", {
@@ -987,11 +995,9 @@ const customBuyProfit = (price) => {
     maximumFractionDigits: 0,
     signDisplay: "exceptZero",
   });
-
-}
+};
 
 function getSellProfit(content) {
-
   if (content[0] === "#N/A") {
     return " ---------- -----------";
   }
@@ -1014,10 +1020,6 @@ function getSellProfit(content) {
     let sellAmount = parseFloat(listedSellAmount);
 
     sellAmounts.push(sellAmount);
-
-
-
-
 
     let pAndL = (sellPrice - currentPrice) * sellAmount * 3.746 * 0.377;
     let perTT_PL = (sellPrice - currentPrice) * 3.746 * 0.377;
@@ -1053,7 +1055,6 @@ function getSellProfit(content) {
 }
 
 function getBuyProfit(content) {
-
   if (content[0] === "#N/A") {
     return " ---------- -----------";
   }
@@ -1077,7 +1078,6 @@ function getBuyProfit(content) {
     let buyAmount = parseFloat(listedBuyAmount);
 
     buyAmounts.push(buyAmount);
-
 
     let pAndL2 = (currentPrice - buyPrice) * buyAmount * 3.746 * 0.377;
     let perTT_PL = (currentPrice - buyPrice) * 3.746 * 0.377;
@@ -1163,7 +1163,8 @@ setTimeout(() => {
 
         plTable.appendChild(preRow);
         preRow.appendChild(positionText);
-        positionText.textContent = element[0] === "#N/A" ? "No Sell Positions" : element[0];
+        positionText.textContent =
+          element[0] === "#N/A" ? "No Sell Positions" : element[0];
         // positionText.style.backgroundColor = "#0D3D56";
         positionText.style.color = "#333333";
         positionText.style.fontWeight = "bold";
@@ -1264,7 +1265,6 @@ setTimeout(() => {
       th2.style.color = "white";
       th3.style.color = "white";
 
-
       resp.data.values.forEach((element, idx) => {
         const preRow = document.createElement("tr");
         const positionText = document.createElement("td");
@@ -1272,7 +1272,8 @@ setTimeout(() => {
 
         plTable2.appendChild(preRow);
         preRow.appendChild(positionText);
-        positionText.textContent = element[0] === "#N/A" ? "No Buy Positions" : element[0];
+        positionText.textContent =
+          element[0] === "#N/A" ? "No Buy Positions" : element[0];
         // positionText.style.backgroundColor = "#0D3D56";
         positionText.style.color = "#333333";
         positionText.style.fontWeight = "bold";
@@ -1335,7 +1336,6 @@ setTimeout(() => {
     });
 }, 1500);
 
-
 var customBuy = document.createElement("p");
 var customSell = document.createElement("p");
 
@@ -1345,11 +1345,12 @@ setTimeout(() => {
   livePLDiv.appendChild(document.createElement("br"));
   livePLDiv.appendChild(document.createElement("br"));
 
-
   livePLDiv.appendChild(customSell);
   livePLDiv.appendChild(customBuy);
-  customBuy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-  customSell.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+  customBuy.innerHTML =
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+  customSell.innerHTML =
+    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
   livePLDiv.appendChild(document.createElement("br"));
   livePLDiv.appendChild(document.createElement("br"));
@@ -1361,9 +1362,9 @@ setTimeout(() => {
 
   const total_Label = document.createElement("td");
   const totalPL = document.createElement("td");
-  totalPL.setAttribute("id","allProfitID");
+  totalPL.setAttribute("id", "allProfitID");
   const allRow = document.createElement("td");
-  allRow.setAttribute("id", "allBoxMiddleCell")
+  allRow.setAttribute("id", "allBoxMiddleCell");
 
   livePLDiv.appendChild(totalPL_Table);
   totalPL_Table.appendChild(row1);
@@ -1373,7 +1374,6 @@ setTimeout(() => {
   row1.appendChild(total_Label);
   row2.appendChild(allRow);
   row3.appendChild(totalPL);
-
 
   total_Label.textContent = "All Open Positions";
 
@@ -1406,7 +1406,6 @@ setTimeout(() => {
   totalPL.style.fontSize = "2.3rem";
   totalPL.style.fontWeight = "bold";
   totalPL.style.fontStyle = "normal";
-
 }, 2000);
 
 setTimeout(() => {
@@ -1429,49 +1428,47 @@ setTimeout(() => {
   resetButton.textContent = "Reset to Live P/L";
   resetButton.classList.add("reset");
 
- 
-
-
   output.innerHTML = "Check Total P/L at any price."; // Display the default slider value
 
   // Update the current slider value (each time you drag the slider handle)
   slider.oninput = function () {
-
     livePLDiv.appendChild(resetButton);
 
     let selectedPrice = this.value;
     output.innerHTML = `Selected Price = $` + selectedPrice;
-
 
     let customPL = customProfit(selectedPrice);
     finalProfit.innerHTML = customPL;
 
     let customSellPL = customSellProfit(selectedPrice);
     customSell.textContent = `Sell Positions = ${customSellPL}`;
-    if(customSellPL[0] === "B") {
+    if (customSellPL[0] === "B") {
       customSell.style.color = "gray";
     } else {
-      customSell.style.color = customSellPL[0] === "+" ? "forestgreen" : "crimson";
+      customSell.style.color =
+        customSellPL[0] === "+" ? "forestgreen" : "crimson";
     }
 
     let customBuyPL = customBuyProfit(selectedPrice);
-    
+
     customBuy.textContent = `Buy Positions = ${customBuyPL}`;
 
-    if(customBuyPL[0] === "B") {
+    if (customBuyPL[0] === "B") {
       customBuy.style.color = "gray";
     } else {
-      customBuy.style.color = customBuyPL[0] === "+" ? "forestgreen" : "crimson";
+      customBuy.style.color =
+        customBuyPL[0] === "+" ? "forestgreen" : "crimson";
     }
-  
+
     finalProfit.style.color = customPL[0] === "+" ? "forestgreen" : "crimson";
 
-    allBoxMiddle.textContent = customPL[0] === "+" ? `Total Profit at $${selectedPrice}` : `Total Loss at $${selectedPrice}` 
-    
+    allBoxMiddle.textContent =
+      customPL[0] === "+"
+        ? `Total Profit at $${selectedPrice}`
+        : `Total Loss at $${selectedPrice}`;
   };
 
   resetButton.onclick = function () {
-
     output.innerHTML = "Check Total P/L at any price.";
     // document.getElementById("myRange").setAttribute('value', "1850");
 
@@ -1482,7 +1479,23 @@ setTimeout(() => {
 
     finalProfit.innerHTML = livePL;
     finalProfit.style.color = livePL[0] === "+" ? "forestgreen" : "crimson";
-    allBoxMiddle.textContent = livePL[0] === "+" ? `Total Profit at $${currentPrice}` : `Total Loss at $${currentPrice}` ;
-
+    allBoxMiddle.textContent =
+      livePL[0] === "+"
+        ? `Total Profit at $${currentPrice}`
+        : `Total Loss at $${currentPrice}`;
   };
 }, 2500);
+
+
+
+setTimeout(() => {
+  console.log("entered swap calc");
+  if (totalBoughtNumber <= 0) {
+    swapAlert.textContent = `SWAP CHARGES = Zero`;
+  } else {
+    let swapValue = (totalBoughtNumber/ 31.10347) * 0.3; //30 cents per ounce swap charge per night
+    swapAlert.textContent = `$${swapValue.toFixed(2)}`;
+  }
+}, 1500);
+
+

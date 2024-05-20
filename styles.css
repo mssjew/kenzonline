@@ -360,12 +360,13 @@ p.posDate {
   background-color: #ffffcc; /* Yellow background */
   border: 1px solid #cccccc; /* Grey border */
 
-  width: 50%;
+  width: 60%;
   margin-right: auto;
   margin-left: auto;
   padding: 5px; /* Add some padding */
   border-radius: 5px; /* Round corners */
   font-size: 2.5rem;
+  text-align: center;
 }
 
 #sell {
