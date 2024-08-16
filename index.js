@@ -40,7 +40,7 @@ const tradingLoss = document.getElementById("tradingLoss");
 const tradingProfit = document.getElementById("tradingProfit");
 const grossProfit = document.getElementById("grossProfit");
 
-const swapAlert = document.getElementById("swapCharges");
+// const swapAlert = document.getElementById("swapCharges");
 
 let loader = `<div class="container">
 <p>Calculating Profit/Loss</p>   
@@ -554,24 +554,24 @@ axios
   });
 
 
-  axios
-  .get(
-    `https://sheets.googleapis.com/v4/spreadsheets/${ONLINE_SHEET_KEY}/values/${totalBoughtPlainText}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
-  )
-  .then((resp) => {
-    totalBoughtNumber = parseFloat(resp.data.values[0][0]);
+  // axios
+  // .get(
+  //   `https://sheets.googleapis.com/v4/spreadsheets/${ONLINE_SHEET_KEY}/values/${totalBoughtPlainText}?key=AIzaSyDmbXdZsgesHy5afOQOZSr9hgDeQNTC6Q4`
+  // )
+  // .then((resp) => {
+  //   totalBoughtNumber = parseFloat(resp.data.values[0][0]);
 
-    // Calculate swap charges after totalBoughtNumber is fetched
-    if (totalBoughtNumber <= 0) {
-      swapAlert.textContent = `SWAP CHARGES = Zero`;
-    } else {
-      let swapValue = (totalBoughtNumber * 3.746) * 0.3; //30 cents per ounce swap charge per night
-      swapAlert.textContent = `$${swapValue.toFixed(2)} DAILY SWAP CHARGES`;
-    }
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+  //   // Calculate swap charges after totalBoughtNumber is fetched
+  //   if (totalBoughtNumber <= 0) {
+  //     swapAlert.textContent = `SWAP CHARGES = Zero`;
+  //   } else {
+  //     let swapValue = (totalBoughtNumber * 3.746) * 0.3; //30 cents per ounce swap charge per night
+  //     swapAlert.textContent = `$${swapValue.toFixed(2)} DAILY SWAP CHARGES`;
+  //   }
+  // })
+  // .catch((err) => {
+  //   console.error(err);
+  // });
 
 // AVG SOLD PLAIN TEXT
 axios
