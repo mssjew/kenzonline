@@ -78,7 +78,7 @@ const totalBoughtPlainText = "Summary!F40";
 const avgSoldPlainText = "Summary!D40";
 const avgBoughtPlainText = "Summary!E40";
 
-const monthlyStats = "Summary!C92:104";
+const monthlyStats = "Summary!C81:93";
 
 const hamzaSells = "Summary!E11:E38";
 const hamzaBuys = "Summary!F11:F38";
@@ -869,7 +869,7 @@ axios
     console.error(err);
   });
 
-const totalDailyP = "Summary!E69";
+const totalDailyP = "Summary!E78";
 const totalDailyHTML = document.getElementById("dailyProfit");
 
 // Total Daily Profit

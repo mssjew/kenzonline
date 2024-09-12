@@ -1,8 +1,8 @@
 const ONLINE_SHEET_KEY = '1_gYW1JXBL5Wqc-e--AHZ_Zgw56p132E858mJ1_v5Uzk';
 
-const month = "Summary!C104";
+const month = "Summary!C93";
 
-const monthlyProfit = "Summary!C92";
+const monthlyProfit = "Summary!C81";
 
 const thisMonth = document.getElementById("currentMonth");
 const monthlyProfitHTML = document.getElementById("monthlyProfit");
@@ -43,7 +43,7 @@ axios
 
 const monthlyList = document.getElementById("monthList");
 
-const monthyTrades = "Summary!B109:G200";
+const monthyTrades = "Summary!B99:G200";
 
 
 
